@@ -33,4 +33,11 @@ public class PostsController {
         List<PostDto> postByCategory = this.postService.getPostByCategory(categoryId);
         return new ResponseEntity<>(postByCategory, HttpStatus.OK);
     }
+
+    @GetMapping("/post")
+    public ResponseEntity<List<PostDto>> getAllPosts(){
+        System.out.println("oknik");
+        List<PostDto> postByCategory = this.postService.getAllPost();
+        return new ResponseEntity<>(postByCategory, HttpStatus.OK);
+    }
 }
