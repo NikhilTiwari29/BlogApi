@@ -4,7 +4,6 @@ import com.example.blogappapis.entities.Categories;
 import com.example.blogappapis.entities.Post;
 import com.example.blogappapis.entities.User;
 import com.example.blogappapis.exception.ResourceNotFoundException;
-import com.example.blogappapis.payloads.CategoriesDto;
 import com.example.blogappapis.payloads.PostDto;
 import com.example.blogappapis.repositories.CategoriesRepo;
 import com.example.blogappapis.repositories.PostRepo;
