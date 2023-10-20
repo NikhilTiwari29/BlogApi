@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/")
@@ -19,6 +20,12 @@ public class PostsController {
     @PostMapping("/user/{userId}/category/{categoryId}/post")
     public ResponseEntity<PostDto> createPost(@RequestBody PostDto postDto, @PathVariable Integer userId, @PathVariable Integer categoryId){
         PostDto post = this.postService.createPost(postDto, userId, categoryId);
+        return new ResponseEntity<>(post, HttpStatus.OK);
+    }
+
+    @PutMapping("/post/{postId}")
+    public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto, @PathVariable Integer postId){
+        PostDto post = this.postService.updatePost(postDto, postId);
         return new ResponseEntity<>(post, HttpStatus.OK);
     }
 
@@ -36,8 +43,19 @@ public class PostsController {
 
     @GetMapping("/post")
     public ResponseEntity<List<PostDto>> getAllPosts(){
-        System.out.println("oknik");
         List<PostDto> postByCategory = this.postService.getAllPost();
         return new ResponseEntity<>(postByCategory, HttpStatus.OK);
+    }
+
+    @GetMapping("/post/{postId}")
+    public ResponseEntity<PostDto> getPostById(@PathVariable Integer postId){
+        PostDto postByCategory = this.postService.getPostById(postId);
+        return new ResponseEntity<>(postByCategory, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/post/{postId}")
+    public ResponseEntity<?> deletePost(@PathVariable Integer postId){
+        this.postService.deletePost(postId);
+        return new ResponseEntity<>(Map.of("Message","Post has been deleted"), HttpStatus.OK);
     }
 }
