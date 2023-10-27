@@ -10,4 +10,5 @@ import java.util.List;
 public interface PostRepo extends JpaRepository<Post,Integer> {
     List<Post> findByUser(User user);
     List<Post> findByCategories(Categories categories);
+    List<Post> findBypostTitleContaining(String keyword);
 }
