@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -24,5 +26,7 @@ public class Post {
     private User user;
     @ManyToOne
     private Categories categories;
+    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
+    private Set<Comments> comments = new HashSet<>();
 
 }
