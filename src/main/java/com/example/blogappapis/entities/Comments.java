@@ -16,4 +16,6 @@ public class Comments {
     private String comment;
     @ManyToOne
     private Post post;
+    @ManyToOne
+    private User user;
 }
