@@ -14,8 +14,8 @@ public class FileServiceImpl implements FileService{
     public String uploadImage(String path, MultipartFile file) throws IOException {
         String fileName = file.getOriginalFilename();
         String randomId = UUID.randomUUID().toString();
-        String fileName1 = randomId.concat(fileName.substring(fileName.lastIndexOf(".")));
-        String filePath = path + File.separator + fileName1;
+        String fileNameWithUUID = randomId.concat(fileName.substring(fileName.lastIndexOf(".")));
+        String filePath = path + File.separator + fileNameWithUUID;
 
         File f = new File(path);
         if (!f.exists()){
@@ -23,8 +23,10 @@ public class FileServiceImpl implements FileService{
         }
 
         Files.copy(file.getInputStream(), Paths.get(filePath));
-        return fileName;
+
+        return fileNameWithUUID; // Return the generated unique file name
     }
+
 
     @Override
     public InputStream getResource(String path, String fileName) throws FileNotFoundException {
